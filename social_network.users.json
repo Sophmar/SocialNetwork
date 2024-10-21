@@ -1,0 +1,315 @@
+[{
+  "_id": 1,
+  "email": "vika@gmail.com",
+  "password": "hashed_password1",
+  "firstName": "Vika",
+  "lastName": "Suon",
+  "interests": [
+    "dancing",
+    "music"
+  ],
+  "posts": [
+    1,
+    2
+  ],
+  "followers": [
+    2,
+    3,
+    4
+  ],
+  "following": [
+    2,
+    5,
+    7
+  ]
+},
+{
+  "_id": 2,
+  "email": "ivan@gmail.com",
+  "password": "hashed_password2",
+  "firstName": "Ivan",
+  "lastName": "Kross",
+  "interests": [
+    "running",
+    "maths"
+  ],
+  "posts": [
+    3,
+    4
+  ],
+  "followers": [
+    1,
+    3
+  ],
+  "following": [
+    1,
+    3,
+    4,
+    7
+  ]
+},
+{
+  "_id": 3,
+  "email": "olya@gmail.com",
+  "password": "hashed_password1",
+  "firstName": "Olya",
+  "lastName": "Marf",
+  "interests": [
+    "biology",
+    "traveling"
+  ],
+  "posts": [
+    5,
+    19
+  ],
+  "followers": [
+    1,
+    2,
+    4
+  ],
+  "following": [
+    1,
+    2,
+    4,
+    5,
+    7
+  ]
+},
+{
+  "_id": 4,
+  "email": "sofiya@gmail.com",
+  "password": "hashed_password2",
+  "firstName": "Sofiya",
+  "lastName": "Medina",
+  "interests": [
+    "maths",
+    "dancing"
+  ],
+  "posts": [
+    6,
+    18
+  ],
+  "followers": [
+    1,
+    2,
+    3
+  ],
+  "following": [
+    1,
+    3,
+    5,
+    7
+  ]
+},
+{
+  "_id": 5,
+  "email": "vova@gmail.com",
+  "password": "hashed_password2",
+  "firstName": "Vova",
+  "lastName": "Khashch",
+  "interests": [
+    "traveling",
+    "economy"
+  ],
+  "posts": [
+    7,
+    8
+  ],
+  "followers": [
+    1,
+    3,
+    4,
+    6,
+    8
+  ],
+  "following": [
+    6,
+    8
+  ]
+},
+{
+  "_id": 6,
+  "email": "lubko@gmail.com",
+  "password": "hashed_password2",
+  "firstName": "Lubko",
+  "lastName": "Tanaka",
+  "interests": [
+    "japanese",
+    "gaming"
+  ],
+  "posts": [
+    12,
+    17
+  ],
+  "followers": [
+    5,
+    8,
+    9,
+    10,
+    11
+  ],
+  "following": [
+    5,
+    8
+  ]
+},
+{
+  "_id": 7,
+  "email": "ira@gmail.com",
+  "password": "hashed_password2",
+  "firstName": "Ira",
+  "lastName": "Rant",
+  "interests": [
+    "music",
+    "traveling"
+  ],
+  "posts": [
+    9,
+    10
+  ],
+  "followers": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "following": [
+    9,
+    10,
+    11
+  ]
+},
+{
+  "_id": 8,
+  "email": "mariya@gmail.com",
+  "password": "hashed_password2",
+  "firstName": "Mariya",
+  "lastName": "Eynaudi",
+  "interests": [
+    "music",
+    "italian"
+  ],
+  "posts": [
+    11,
+    20
+  ],
+  "followers": [
+    5,
+    6,
+    9,
+    10,
+    11
+  ],
+  "following": [
+    5,
+    6,
+    9,
+    10,
+    11
+  ]
+},
+{
+  "_id": 9,
+  "email": "artem@gmail.com",
+  "password": "hashed_password2",
+  "firstName": "Artem",
+  "lastName": "Koralez",
+  "interests": [
+    "maths",
+    "gaming"
+  ],
+  "posts": [
+    13
+  ],
+  "followers": [
+    7,
+    8,
+    10,
+    11
+  ],
+  "following": [
+    6,
+    8
+  ]
+},
+{
+  "_id": 10,
+  "email": "matviy@gmail.com",
+  "password": "hashed_password2",
+  "firstName": "Matviy",
+  "lastName": "Lemko",
+  "interests": [
+    "gaming",
+    "sports"
+  ],
+  "posts": [
+    14,
+    15
+  ],
+  "followers": [
+    7,
+    8,
+    9,
+    11
+  ],
+  "following": [
+    6,
+    8
+  ]
+},
+{
+  "_id": 11,
+  "email": "tymur@gmail.com",
+  "password": "hashed_password2",
+  "firstName": "Tymur",
+  "lastName": "Kampo",
+  "interests": [
+    "maths",
+    "reading"
+  ],
+  "posts": [
+    16
+  ],
+  "followers": [
+    7,
+    8,
+    9,
+    10
+  ],
+  "following": [
+    6,
+    8
+  ]
+},
+{
+  "_id": {
+    "$oid": "67169659b81f0209568ac0cf"
+  },
+  "Email": "vlada@gmail.com",
+  "Password": "5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5",
+  "FirstName": "vlada",
+  "LastName": "franklin",
+  "Interests": [
+    "swimming",
+    "maths"
+  ],
+  "PostsId": [],
+  "FollowersId": [],
+  "FollowingId": []
+},
+{
+  "_id": {
+    "$oid": "67169833da06b961f0e1cc0d"
+  },
+  "Email": "vlada@gmail.com",
+  "Password": "5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5",
+  "FirstName": "vlada",
+  "LastName": "franklin",
+  "Interests": [
+    "swimming",
+    "maths"
+  ],
+  "PostsId": [],
+  "FollowersId": [],
+  "FollowingId": []
+}]
