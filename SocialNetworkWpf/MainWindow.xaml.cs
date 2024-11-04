@@ -21,11 +21,31 @@ namespace SocialNetworkWpf
         {
             InitializeComponent();
             _email = email;
+            MainContent.Content = new HomepageUserControl();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+        private void NavigateToHomepage(object sender, RoutedEventArgs e)
+        {
+            MainContent.Content = new HomepageUserControl();
+        }
+
+        private void NavigateToProfile(object sender, RoutedEventArgs e)
+        {
+            MainContent.Content = new ProfileUserControl();
+        }
+
+        private void NavigateToPeople(object sender, RoutedEventArgs e)
+        {
+            MainContent.Content = new PeopleUserControl();
+        }
+
+        private void NavigateToPopular(object sender, RoutedEventArgs e)
+        {
+            MainContent.Content = new PopularUserControl();
         }
     }
 }

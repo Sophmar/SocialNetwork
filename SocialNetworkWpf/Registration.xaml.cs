@@ -1,5 +1,6 @@
 ﻿using DAL.Concrete;
 using DTO;
+using Services;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -25,6 +26,7 @@ namespace SocialNetworkWpf
     public partial class Registration : Window
     {
         UserDal dal = new UserDal();
+        UserService dals = new UserService();
         public Registration()
         {
             InitializeComponent();
@@ -105,7 +107,7 @@ namespace SocialNetworkWpf
                         FollowersId = [],
                         FollowingId = []
                     };
-                    dal.Add(user);
+                    dals.Add(user);
                     errormessage.Text = "You have Registered successfully.";
                     Reset();
                 }

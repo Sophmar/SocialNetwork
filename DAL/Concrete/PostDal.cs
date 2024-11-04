@@ -28,7 +28,7 @@ namespace DAL.Concrete
         {
             var collection = Database.GetCollection<Posts>("posts");
             collection.InsertOne(post);
-            var result = collection.Find(u => u.Email == user.Email).FirstOrDefault();
+            var result = collection.Find(p => p.Id == post.Id).FirstOrDefault();
             if (result != null)
             {
                 return true;
@@ -37,84 +37,37 @@ namespace DAL.Concrete
         }
 
 
-        public Users GetByEmail(string email)
-        {
-            var collection = Database.GetCollection<Users>("users");
-            var filter = Builders<Users>.Filter.Eq("Email", email);
-            return collection.Find(filter).FirstOrDefault();
-        }
-
-
-        public bool Delete(string email)
-        {
-            var collection = Database.GetCollection<Users>("users");
-
-            var filter = Builders<Users>.Filter.Eq("Email", email);
-            var result = collection.DeleteOne(filter);
-
-            if (result.DeletedCount > 0)
-            {
-                return true;
-            }
-            return false;
-        }
-
-
-        public List<Users> GetAll()
-        {
-            var collection = Database.GetCollection<Users>("users");
-            var builder = Builders<Users>.Filter;
-            var filter = builder.Empty;
-            var users = collection.Find(filter).ToList();
-            return users;
-        }
-
-        public bool Update(Users user)
-        {
-            var collection = Database.GetCollection<Users>("users");
-            var updateDefinition2 = Builders<Users>.Update.Set(u => u.Password, user.Password);
-            var res2 = collection.UpdateOne(x => x.Email == user.Email, updateDefinition2);
-            var updateDefinition3 = Builders<Users>.Update.Set(u => u.FirstName, user.FirstName);
-            var res3 = collection.UpdateOne(x => x.Email == user.Email, updateDefinition3);
-            var updateDefinition4 = Builders<Users>.Update.Set(u => u.LastName, user.LastName);
-            var res4 = collection.UpdateOne(x => x.Email == user.Email, updateDefinition4);
-
-            if (res2.ModifiedCount > 0 || res3.ModifiedCount > 0 || res4.ModifiedCount > 0)
-            {
-                return true;
-            }
-            return false;
-        }
-        
-        public bool Add(Posts post)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool Delete()
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool AddComment(Comment comment, ObjectId postId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool LikeComment(Comment comment, ObjectId userId, ObjectId postId)
+        public bool Delete(ObjectId id)
         {
             var collection = Database.GetCollection<Posts>("posts");
-            var filter = Builders<Posts>.Filter.Eq("_id", postId);
-            Posts post = collection.Find(filter).FirstOrDefault();
 
-            var updateDefinition2 = Builders<Posts>.Update.Push(u => u.Comments[].Likes, userId);
-            var res2 = collection.UpdateOne(x => (x.UserId == comment.UserId && x.CreatedAt == comment.CreatedAt), updateDefinition2);
+            var filter = Builders<Posts>.Filter.Eq("_id", id);
+            var result = collection.DeleteOne(filter);
 
-            if (res2.ModifiedCount > 0)
-            {
-                return true;
-            }
-            return false;
+            return (result.DeletedCount > 0);
+        }
+
+
+        public bool AddComment(ObjectId postId, Comment comment)
+        {
+            var collectionPosts = Database.GetCollection<Posts>("posts");
+            var updateDefinition2 = Builders<Posts>.Update.Push("comments", comment);
+            var res = collectionPosts.UpdateOne(x => x.Id == postId, updateDefinition2);
+            return (res.ModifiedCount > 0) ;
+        }
+
+        public async Task<bool> LikeComment(ObjectId postId, ObjectId commentId, ObjectId userId)
+        {
+            var collection = Database.GetCollection<Posts>("posts");
+            var builder = Builders<Posts>.Filter;
+            var filter = Builders<Posts>.Filter.And(
+            Builders<Posts>.Filter.Eq(post => post.Id, postId),
+            Builders<Posts>.Filter.ElemMatch(post => post.Comments, comment => comment.Id == commentId));
+            var update = Builders<Posts>.Update.AddToSet("comments.$.like", userId);
+
+            var updateResult = await collection.UpdateOneAsync(filter, update);
+
+            return (updateResult.ModifiedCount > 0);
         }
 
         public bool AddLike(ObjectId postId, ObjectId userId)

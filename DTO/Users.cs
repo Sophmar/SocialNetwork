@@ -10,8 +10,8 @@ namespace DTO
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public List<string> Interests { get; set; }
-        public List<int> PostsId { get; set; }
-        public List<int> FollowersId { get; set; }
-        public List<int> FollowingId { get; set; }
+        public List<ObjectId> PostsId { get; set; }
+        public List<ObjectId> FollowersId { get; set; }
+        public List<ObjectId> FollowingId { get; set; }
     }
 }

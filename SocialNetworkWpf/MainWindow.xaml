@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:SocialNetworkWpf"
         xmlns:fa="http://schemas.fontawesome.io/icons/"
         mc:Ignorable="d" Height="730" Width="1280" WindowStartupLocation="CenterScreen"
-        WindowStyle="None" AllowsTransparency="True" Background="Transparent"> 
+        WindowStyle="None" AllowsTransparency="True" Background="Transparent">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
@@ -26,7 +26,7 @@
                 <Border.Background>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                         <GradientStop Color="#FF008000" Offset="0"/>
-                        <GradientStop Color="LimeGreen"  Offset="1"/>
+                        <GradientStop Color="LimeGreen" Offset="1"/>
                     </LinearGradientBrush>
                 </Border.Background>
             </Border>
@@ -34,29 +34,29 @@
         </Grid>
 
         <Border Background="Ivory" Grid.Row="1" BorderThickness="1" BorderBrush="GhostWhite" Width="125" CornerRadius="15" Margin="50 0 50 40">
-            <StackPanel>
-                <Button Style="{StaticResource menuButton}" Margin="0 10 0 0" Background="Green" Foreground="#FFFFFF">
+            <StackPanel Margin="1,-1,-1,1">
+                <Button Style="{StaticResource menuButton}" Click="NavigateToHomepage">
                     <StackPanel>
                         <fa:ImageAwesome Icon="Home" Style="{StaticResource menuButtonIcon}"/>
                         <TextBlock Text="Homepage" Style="{StaticResource menuButtonText}"/>
                     </StackPanel>
                 </Button>
-                
-                <Button Style="{StaticResource menuButton}" Click="Button_Click">
-                <StackPanel>
-                    <fa:ImageAwesome Icon="User" Style="{StaticResource menuButtonIcon}"/>
-                    <TextBlock Text="Profile" Style="{StaticResource menuButtonText}"/>
-                </StackPanel>
-                </Button>
-            
-                <Button Style="{StaticResource menuButton}">
-                <StackPanel>
-                    <fa:ImageAwesome Icon="Users" Style="{StaticResource menuButtonIcon}"/>
-                    <TextBlock Text="People" Style="{StaticResource menuButtonText}"/>
-                </StackPanel>
+
+                <Button Style="{StaticResource menuButton}" Click="NavigateToProfile">
+                    <StackPanel>
+                        <fa:ImageAwesome Icon="User" Style="{StaticResource menuButtonIcon}"/>
+                        <TextBlock Text="Profile" Style="{StaticResource menuButtonText}"/>
+                    </StackPanel>
                 </Button>
 
-                <Button Style="{StaticResource menuButton}">
+                <Button Style="{StaticResource menuButton}" Click="NavigateToPeople">
+                    <StackPanel>
+                        <fa:ImageAwesome Icon="Users" Style="{StaticResource menuButtonIcon}"/>
+                        <TextBlock Text="People" Style="{StaticResource menuButtonText}"/>
+                    </StackPanel>
+                </Button>
+
+                <Button Style="{StaticResource menuButton}" Click="NavigateToPopular">
                     <StackPanel>
                         <fa:ImageAwesome Icon="SmileOutline" Style="{StaticResource menuButtonIcon}"/>
                         <TextBlock Text="Popular" Style="{StaticResource menuButtonText}"/>
@@ -64,32 +64,9 @@
                 </Button>
             </StackPanel>
         </Border>
-        <StackPanel Grid.Column="1" Grid.Row="1" Margin="0 50 50 20" VerticalAlignment="Stretch">
-            <Border>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
 
-                    <Border Style="{StaticResource infoCard}">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="auto"/>
-                            </Grid.ColumnDefinitions>
-                            <StackPanel Style="{StaticResource infoCardStack}">
-                                <TextBlock Text="42,500,000" Style="{StaticResource infoCardTitle}"/>
-                                <TextBlock Text="Total Viewers" Style="{StaticResource infoCardText}"/>
-
-                            </StackPanel>
-                        </Grid>
-                    </Border>
-                </Grid>
-            </Border>
-        </StackPanel>
-        
-        
+        <ContentControl x:Name="MainContent" Grid.Column="1" Grid.Row="1" Margin="0 50 50 20" VerticalAlignment="Stretch">
+        </ContentControl>
     </Grid>
 </Window>
+

@@ -48,15 +48,57 @@ namespace DAL.Concrete
         public bool Delete(string email)
         {
             var collection = Database.GetCollection<Users>("users");
-
             var filter = Builders<Users>.Filter.Eq("email", email);
-            var result = collection.DeleteOne(filter);
+            var deleteResult = collection.DeleteOne(filter);
 
-            if (result.DeletedCount > 0)
+            Users user = collection.Find(filter).FirstOrDefault();
+
+            if (deleteResult.DeletedCount > 0 && user != null)
             {
+                var updateFilterFollowers = Builders<Users>.Filter.Eq("followers", user.Id);
+                var updateFollowers = Builders<Users>.Update.Pull("followers", user.Id);
+                collection.UpdateMany(updateFilterFollowers, updateFollowers);
+
+                var updateFilterFollowing = Builders<Users>.Filter.Eq("following", user.Id);
+                var updateFollowing = Builders<Users>.Update.Pull("following", user.Id);
+                collection.UpdateMany(updateFilterFollowing, updateFollowing);
+
                 return true;
             }
+
             return false;
+        }
+
+        public bool RemoveFollower(string userId, string followerId)
+        {
+            var collection = Database.GetCollection<Users>("users");
+
+            var filter = Builders<Users>.Filter.Eq("id", userId);
+
+            var updateFollowers = Builders<Users>.Update.Pull("followers", followerId);
+            var resultFollowers = collection.UpdateOne(filter, updateFollowers);
+
+            var filterFollowing = Builders<Users>.Filter.Eq("id", followerId);
+            var updateFollowing = Builders<Users>.Update.Pull("following", userId);
+            var resultFollowing = collection.UpdateOne(filterFollowing, updateFollowing);
+
+            return resultFollowers.ModifiedCount > 0 || resultFollowing.ModifiedCount > 0;
+        }
+
+        public bool RemoveFollowing(string userId, string followingId)
+        {
+            var collection = Database.GetCollection<Users>("users");
+
+            var filter = Builders<Users>.Filter.Eq("id", userId);
+
+            var updateFollowing = Builders<Users>.Update.Pull("following", followingId);
+            var resultFollowing = collection.UpdateOne(filter, updateFollowing);
+
+            var filterFollowers = Builders<Users>.Filter.Eq("id", followingId);
+            var updateFollowers = Builders<Users>.Update.Pull("followers", userId);
+            var resultFollowers = collection.UpdateOne(filterFollowers, updateFollowers);
+
+            return resultFollowers.ModifiedCount > 0 || resultFollowing.ModifiedCount > 0;
         }
 
 

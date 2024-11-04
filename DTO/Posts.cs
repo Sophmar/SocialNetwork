@@ -13,6 +13,7 @@ namespace DTO
     }
     public class Comment
     {
+        public ObjectId Id { get; set; }
         public List<int> Likes { get; set; }
         public int UserId { get; set; }
         public string Content { get; set; }
